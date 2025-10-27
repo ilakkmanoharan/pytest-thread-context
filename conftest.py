@@ -1,8 +1,14 @@
+# conftest.py
 import os
 import pytest
-from . import plugin_thread_env  # auto-load the experimental plugin
+import sys
+import pathlib
 
-pytest_plugins = [plugin_thread_env]
+# Ensure current directory is on sys.path
+sys.path.append(str(pathlib.Path(__file__).parent))
+
+# Import your plugin as a regular module
+import plugin_thread_env
 
 
 @pytest.hookimpl(hookwrapper=True)
